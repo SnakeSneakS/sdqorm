@@ -4,14 +4,18 @@ This library link string `query` into golang struct.
 
 # Background
 - In some cases of solving programming problems.
+- Personal purpose: to learn the usage of `reflect` package
 
 # Usage
-Please refer to [example/example.go](./example/example.go)
+Please refer to  [examples/example.go](./examples/example.go) and [examples/example_test.go](./examples/example_test.go)
+
+## 1. Use Tag
+## 2. Use Custom Parser
 
 # Techniques
 - `reflect` 
 
+
 # TODO: 
-- structに関して、CustomParserを作成せずともTagを指定するだけでパースできるようにする
-- indexのみではなくたとえば1-7番目などの指定ができるようにする
-- 事前定義しない処理(例:intについてはstrconv.Atoiによる変換のみサポートしているが、それ以外の処理も必要になる場合があり得そう)も実行できるようにしたい
+- increase number of available types to handle. now support `int`, `string`, `struct` only.
+

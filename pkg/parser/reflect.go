@@ -3,7 +3,6 @@ package parser
 import (
 	"fmt"
 	"reflect"
-	"strings"
 )
 
 // handleFuncOnSpecificTag runs function ${f} about specific field ${tag} on ${target}
@@ -13,7 +12,7 @@ func handleFuncOnSpecificTag(
 ) error {
 	// Get the reflection value of the result
 	val := reflect.ValueOf(target)
-	if val.Kind() != reflect.Pointer {
+	if val.Kind() != reflect.Pointer || val.IsNil() {
 		return fmt.Errorf("target must be a pointer to a struct")
 	}
 	val = val.Elem()
@@ -48,18 +47,18 @@ func handleFuncOnSpecificTag(
 }
 
 // Check for required keys
-func checkRequiredKeys(tagParts []string, required []TagPartKey) error {
-	for _, partKey := range required {
-		found := false
-		for _, part := range tagParts {
-			if strings.HasPrefix(part, fmt.Sprintf("%s:", partKey)) {
-				found = true
-				break
-			}
-		}
-		if !found {
-			return fmt.Errorf("key %s is required for usage of tag %s", partKey, SdqormTagName)
-		}
-	}
-	return nil
-}
+//func checkRequiredKeys(tagParts []string, required []TagPartKey) error {
+//	for _, partKey := range required {
+//		found := false
+//		for _, part := range tagParts {
+//			if strings.HasPrefix(part, fmt.Sprintf("%s:", partKey)) {
+//				found = true
+//				break
+//			}
+//		}
+//		if !found {
+//			return fmt.Errorf("key %s is required for usage of tag %s", partKey, SdqormTagName)
+//		}
+//	}
+//	return nil
+//}
